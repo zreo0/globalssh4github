@@ -29,7 +29,7 @@ func fetchIPs() (ips []string, err error) {
 	if err != nil {
 		return
 	}
-	//fmt.Println(string(s))
+	fmt.Println(string(s))
 	data := make(map[string]interface{})
 	err = json.Unmarshal(s, &data)
 	if err != nil {
@@ -46,6 +46,7 @@ func fetchIPs() (ips []string, err error) {
 func parseIP(ipr string) string {
 	ip, ipnet, err := net.ParseCIDR(ipr)
 	if err != nil {
+		fmt.Println("parseIP Error:", err.Error())
 		return ""
 	}
 	if hex.EncodeToString(ipnet.Mask) == "ffffffff" {

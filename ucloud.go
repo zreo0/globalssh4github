@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/ucloud/ucloud-sdk-go/services/pathx"
+	"github.com/ucloud/ucloud-sdk-go/services/uaccount"
 	"github.com/ucloud/ucloud-sdk-go/ucloud"
 	"github.com/ucloud/ucloud-sdk-go/ucloud/auth"
 )
@@ -22,6 +23,15 @@ func initUcloud() {
 	credential = auth.NewCredential()
 	credential.PrivateKey = config.Ucloud.PrivateKey
 	credential.PublicKey = config.Ucloud.PublicKey
+}
+
+func getProjectId() {
+	uaccountClient := uaccount.NewClient(&cfg, &credential)
+	req := uaccountClient.NewGetProjectListRequest()
+	resp, err := uaccountClient.GetProjectList(req)
+	fmt.Println("ressss:", resp.ProjectSet)
+	fmt.Println("err:", err)
+	// return resp.ProjectSet, err
 }
 
 func newGlobalSSH(ip, area string) (domain, instance string, err error) {

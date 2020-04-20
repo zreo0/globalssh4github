@@ -1,4 +1,4 @@
-module github.com/zu1k/globalssh4github
+module github.com/zreo0/globalssh4github
 
 go 1.14
 
